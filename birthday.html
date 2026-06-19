@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Neeraj 🌹</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Dancing+Script:wght@500;700&family=Caveat:wght@400;500;600;700&family=Special+Elite&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;min-height:100vh;overflow-x:hidden;}
+
+/* ── SLIDES ── */
+.slide{display:none;min-height:100vh;width:100%;flex-direction:column;align-items:center;justify-content:center;padding:2.5rem 1.5rem;text-align:center;position:relative;overflow:hidden;}
+.slide.active{display:flex;}
+
+.s1{background:#1a0a0a;}
+.s2{background:#0f0d1a;}
+.s3{background:#0a1a0e;}
+.s4{background:#1a0a14;}
+.s5{background:#f2e8d0;min-height:100vh;align-items:flex-start;padding:2rem 1rem 3rem;}
+
+/* floating petals */
+.petal{position:absolute;animation:drift linear infinite;pointer-events:none;}
+@keyframes drift{0%{transform:translateY(-30px) rotate(0deg);opacity:0.18}100%{transform:translateY(110vh) rotate(360deg);opacity:0}}
+
+/* typography */
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,5vw,2.4rem);color:#e8c49a;margin-bottom:1rem;line-height:1.4;font-style:italic;}
+.sub{font-family:'Cormorant Garamond',serif;font-size:clamp(0.95rem,3vw,1.15rem);color:#c4a882;line-height:1.9;max-width:460px;font-weight:400;}
+.cursive{font-family:'Dancing Script',cursive;font-size:clamp(1.1rem,4vw,1.5rem);color:#e8c49a;margin:0.5rem 0;}
+
+/* buttons */
+.btn{background:transparent;border:1px solid #c4a882;color:#e8c49a;padding:13px 36px;font-size:0.85rem;cursor:pointer;margin-top:1.8rem;font-family:'Cormorant Garamond',serif;letter-spacing:3px;text-transform:uppercase;transition:all 0.3s;}
+.btn:hover{background:#c4a882;color:#1a0a0a;}
+.btn:disabled{opacity:0.25;cursor:default;}
+.btn:disabled:hover{background:transparent;color:#e8c49a;}
+
+/* icons */
+.icon{font-size:3.5rem;animation:float 4s ease-in-out infinite;display:inline-block;margin-bottom:0.5rem;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* candle */
+.candle-wrap{margin:2rem 0;cursor:pointer;}
+.candle-icon{font-size:5rem;display:inline-block;transition:all 0.5s;}
+.candle-icon.out{filter:grayscale(1);opacity:0.35;}
+.hint{font-family:'Cormorant Garamond',serif;font-size:0.85rem;color:#7a6050;letter-spacing:2px;margin-top:0.5rem;font-style:italic;}
+
+/* photos */
+.photos-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:1.5rem 0;max-width:500px;}
+.ph-box{width:130px;height:130px;border:1px solid #4a6741;border-radius:3px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:0.75rem;color:#5a7a52;cursor:pointer;position:relative;overflow:hidden;background:#0d1a0d;font-family:'Cormorant Garamond',serif;font-style:italic;}
+.ph-box input{position:absolute;opacity:0;width:100%;height:100%;cursor:pointer;}
+.ph-box img{width:100%;height:100%;object-fit:cover;}
+.ph-box .ph-icon{font-size:1.8rem;margin-bottom:4px;}
+
+/* gift */
+.gift-icon{font-size:5.5rem;display:inline-block;animation:wiggle 1.5s ease-in-out infinite;cursor:pointer;margin:1.5rem 0;}
+@keyframes wiggle{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.gift-icon.opened{animation:none;font-size:6.5rem;}
+
+/* progress */
+.progress{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:100;}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background 0.3s;}
+.dot.on{background:rgba(255,255,255,0.65);}
+
+/* confetti */
+.confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;}
+
+/* ── LETTER (slide 5) ── */
+.postcard{max-width:600px;width:100%;margin:0 auto;}
+.envelope-flap{width:100%;background:#c8a45a;height:32px;clip-path:polygon(0 0,50% 100%,100% 0);opacity:0.8;margin-bottom:-2px;position:relative;z-index:2;}
+.card{
+  background:#f2e8d0;
+  padding:2rem 2.2rem 2.5rem;
+  position:relative;
+  box-shadow:0 4px 6px rgba(0,0,0,0.1),0 25px 60px rgba(0,0,0,0.45),inset 0 0 80px rgba(180,140,60,0.12);
+  border-top:3px solid #b8943a;
+}
+.card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 0% 0%,rgba(100,60,10,0.28) 0%,transparent 25%),radial-gradient(ellipse at 100% 0%,rgba(100,60,10,0.22) 0%,transparent 20%),radial-gradient(ellipse at 0% 100%,rgba(100,60,10,0.28) 0%,transparent 25%),radial-gradient(ellipse at 100% 100%,rgba(100,60,10,0.32) 0%,transparent 25%);pointer-events:none;}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1.5px solid #c4a04a;position:relative;z-index:2;}
+.from-to{font-family:'Caveat',cursive;font-size:0.95rem;color:#5a3a10;line-height:1.9;}
+.label{font-family:'Special Elite',monospace;font-size:0.5rem;color:#8b6010;letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:1px;}
+.stamp-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:5px;}
+.stamp{width:56px;height:68px;border:2px solid #8b6010;background:#e8d4a0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px;box-shadow:2px 2px 0 rgba(0,0,0,0.15);position:relative;}
+.stamp::before{content:'';position:absolute;inset:3px;border:1px solid #8b6010;opacity:0.45;}
+.stamp-emoji{font-size:1.7rem;line-height:1;}
+.stamp-text{font-family:'Special Elite',monospace;font-size:0.38rem;color:#5a3a00;letter-spacing:1px;text-align:center;margin-top:2px;text-transform:uppercase;}
+.cancel{position:absolute;top:2px;right:2px;width:58px;height:70px;pointer-events:none;opacity:0.3;}
+.postmark{font-family:'Special Elite',monospace;font-size:0.55rem;color:#8b4010;text-align:right;letter-spacing:1.5px;line-height:1.7;opacity:0.7;text-transform:uppercase;}
+.letter-greeting{font-family:'Caveat',cursive;font-size:1.55rem;font-weight:700;color:#5a1a10;margin-bottom:0.8rem;position:relative;z-index:2;}
+.letter-body{font-family:'Caveat',cursive;font-size:clamp(0.88rem,2.5vw,1.02rem);color:#1e0e00;line-height:2;white-space:pre-wrap;font-weight:500;position:relative;z-index:2;}
+.divider{border:none;border-top:1px dashed #c4a04a;margin:1.4rem 0;opacity:0.55;}
+.signature{font-family:'Caveat',cursive;font-size:1.4rem;font-weight:700;color:#5a1a10;text-align:right;line-height:1.6;position:relative;z-index:2;}
+.signature span{font-size:0.88rem;color:#8b6010;font-weight:400;display:block;}
+.card-footer{margin-top:1.2rem;padding-top:1rem;border-top:1.5px solid #c4a04a;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;}
+.footer-note{font-family:'Special Elite',monospace;font-size:0.5rem;color:#a08040;letter-spacing:1.5px;text-transform:uppercase;opacity:0.65;}
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 -->
+<div class="slide s1 active" id="s1">
+  <div id="p1"></div>
+  <div class="icon">🌹</div>
+  <h1>Hey Neeraj...</h1>
+  <p class="sub">It's your birthday today.</p>
+  <p class="cursive" style="margin:0.4rem 0 0.8rem;">& this day is very special to me.</p>
+  <p class="sub">Something's waiting for you.<br>Let's go together, jaana?</p>
+  <button class="btn" onclick="go(2)">Continue</button>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="slide s2" id="s2">
+  <div id="p2"></div>
+  <div class="icon">✨</div>
+  <h1>So... you're here.</h1>
+  <p class="sub">Waise yeh meri bhi cheez nahi hai —<br>but I wanted to do this for you, jaana.</p>
+  <p class="sub" style="margin-top:0.8rem;">Thank you for always being there.<br>Bear with me a little more? 🥺</p>
+  <p class="cursive" style="margin-top:1rem;">Here's your birthday candle...</p>
+  <div class="candle-wrap" onclick="blowCandle()">
+    <div class="candle-icon" id="cv">🕯️</div>
+    <div class="hint" id="chint">— tap to blow —</div>
+  </div>
+  <button class="btn" id="cbtn" disabled onclick="go(3)">Next</button>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="slide s3" id="s3">
+  <div id="p3"></div>
+  <div class="icon">📸</div>
+  <h1>Before the special message...</h1>
+  <p class="sub">Some of us. Some of my favourite moments.<br>I want to keep making them with you. 🌿</p>
+  <div class="photos-grid">
+    <div class="ph-box" id="ph0"><div class="ph-icon">📷</div><span>add photo</span><input type="file" accept="image/*" onchange="addPhoto(event,0)"></div>
+    <div class="ph-box" id="ph1"><div class="ph-icon">📷</div><span>add photo</span><input type="file" accept="image/*" onchange="addPhoto(event,1)"></div>
+    <div class="ph-box" id="ph2"><div class="ph-icon">📷</div><span>add photo</span><input type="file" accept="image/*" onchange="addPhoto(event,2)"></div>
+    <div class="ph-box" id="ph3"><div class="ph-icon">📷</div><span>add photo</span><input type="file" accept="image/*" onchange="addPhoto(event,3)"></div>
+    <div class="ph-box" id="ph4"><div class="ph-icon">📷</div><span>add photo</span><input type="file" accept="image/*" onchange="addPhoto(event,4)"></div>
+  </div>
+  <button class="btn" onclick="go(4)">Now the gift 🎁</button>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide s4" id="s4">
+  <div id="p4"></div>
+  <div class="icon">💝</div>
+  <h1>Ohooo — still here? 😂</h1>
+  <p class="sub">Sorry sorry sorry —</p>
+  <p class="cursive">I love you. Chlo chlo age bado.</p>
+  <p class="sub" style="margin-top:0.5rem;">Tap the gift first 👇</p>
+  <div onclick="openGift()">
+    <div class="gift-icon" id="gi">🎁</div>
+    <div class="hint" id="ghint">tap tap!</div>
+  </div>
+  <button class="btn" id="gbtn" disabled onclick="go(5)">Read the letter 💌</button>
+</div>
+
+<!-- SLIDE 5 — LETTER -->
+<div class="slide s5" id="s5">
+  <div class="postcard">
+    <div class="envelope-flap"></div>
+    <div class="card">
+      <div class="card-header">
+        <div class="from-to">
+          <span class="label">From</span>
+          Tumhari hi woh 💕<br>
+          <span class="label" style="margin-top:5px;">To</span>
+          Mere Neeraj 🌹
+        </div>
+        <div class="stamp-wrap">
+          <div class="stamp">
+            <div class="stamp-emoji">🌹</div>
+            <div class="stamp-text">Love &<br>Always</div>
+            <svg class="cancel" viewBox="0 0 58 70"><path d="M0,14 Q29,17 58,14" stroke="#c00" stroke-width="1.5" fill="none"/><path d="M0,24 Q29,27 58,24" stroke="#c00" stroke-width="1.5" fill="none"/><path d="M0,34 Q29,31 58,34" stroke="#c00" stroke-width="1.5" fill="none"/></svg>
+          </div>
+          <div class="postmark">6 July 2025<br>with love<br>————</div>
+        </div>
+      </div>
+
+      <div class="letter-greeting">My Jaana,</div>
+      <div class="letter-body">So finally you're here.
+
+Waise — yeh meri bhi cheez nahi hai. Tum jaante ho main yeh sab nahi karti. But tumhare liye karna chahti thi. Toh yahan hun.
+
+Yeh letter explain nahi kar sakta ki tum mere liye kitne important ho. Koi bhi nahi kar sakta honestly. But phir bhi batana chahti hun — kyunki tum jaanne ke layak ho.
+
+Hum mile bhi toh unexpected tarike se — na jagah sochi thi, na waqt. Aur baat shuru hui feviquick se. Haha. Maine socha bhi nahi tha ki isse kuch aisa banega. Hum bilkul opposite hain — main sabse baat karti hun, sabke saath ghul jaati hun. Aur tum? Bilkul ulta. Phir bhi baat hui, dheere dheere. Pehle bas senior-junior wali — Neeraj sir yaad hai na? Aur fir kab sab badal gaya, pata hi nahi chala.
+
+Tumhara wait karna kab shuru ho gaya mujhe, khud nahi jaanti. Aur jab tum chid jaate the jab main kisi aur se baat karti — woh bhi notice karti thi, andar se thodi khush bhi hoti thi. 😄
+
+Phir mera birthday aaya. Pehli baar koi mere liye jaldi aaya. Pehli baar kisi ne mujhe flowers diye. Main khush bhi thi, confuse bhi. Maine sidha cake cut kar diya — but sach yeh tha ki main wait kar rahi thi tumhara. Sach mein. Phir tumne muh fula liya, aur main hasi bhi, manaaya bhi.
+
+Humari coffee "date" — jo date nahi thi, but thi. Beta sikhane ke chakkar mein seedhi ladki pata li, hai na? 😄
+
+Aur phir ek din, car mein — maine kiss kar liya. Mujhe bhi nahi pata kyun, bas ho gaya. Aur tumne kaha I love you. Main genuinely shocked thi. But jaana — woh moment life ki sabse achi cheez hai jo mujhse aayi.
+
+Maine kaha tha jab tak hun, hun. Jaaungi toh rokna mat. Pata nahi kya hua — main ruk gayi. Aaj tak. Aur hamesha ke liye rukna chahti hun.
+
+Main jaanti hun abhi bahut kuch hai — hum dono struggle kar rahe hain, tumhe bahut kuch karna hai abhi. But jaana, main hamesha hun tumhare saath. Haan, roz preshan karti hun, roz wahi bolti hun. But I mean it, every single time.
+
+Hum sab kuch karenge saath mein. Saath ghumenge, badi car, bada ghar — ek ek sapna pura karenge. Bas thoda aur waqt.
+
+Aur haan — shaadi karni hai mujhe tumse, seedha bol rahi hun. Aur 1 lakh ka lehenga pehenna hai. Samajh lena. 😌
+
+Tumne mujhe itna pyaar diya hai — itna zyada ki words mein nahi daal sakti. 4+ saal, aur main aaj bhi wahi hun. Sorry bahut preshan karti hun. But yeh haq tumhara hi hai na?
+
+Chlo — zyada time le liya. Aisa socha toh marungi. 😄</div>
+
+      <hr class="divider">
+      <div class="signature">
+        I love you, mere Jaanaaaa 🌹
+        <span>bahut saara &nbsp;·&nbsp; Happy Birthday 💕</span>
+      </div>
+      <div class="card-footer">
+        <div class="footer-note">A letter · delivered with love</div>
+        <div style="font-size:1rem;opacity:0.6;">🌸 🌹 💌</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Progress dots -->
+<div class="progress" id="prog">
+  <div class="dot on" id="d1"></div>
+  <div class="dot" id="d2"></div>
+  <div class="dot" id="d3"></div>
+  <div class="dot" id="d4"></div>
+  <div class="dot" id="d5"></div>
+</div>
+
+<script>
+var cur=1,candleDone=false,giftDone=false;
+
+function go(n){
+  document.getElementById('s'+cur).classList.remove('active');
+  document.getElementById('s'+n).classList.add('active');
+  for(var i=1;i<=5;i++) document.getElementById('d'+i).classList.remove('on');
+  document.getElementById('d'+n).classList.add('on');
+  cur=n;
+  if(n===5||n===4) burst();
+  window.scrollTo(0,0);
+}
+
+function blowCandle(){
+  if(candleDone)return;
+  candleDone=true;
+  document.getElementById('cv').textContent='🫙';
+  document.getElementById('cv').classList.add('out');
+  document.getElementById('chint').textContent='✨ wish made!';
+  var b=document.getElementById('cbtn');
+  b.disabled=false;
+}
+
+function openGift(){
+  if(giftDone)return;
+  giftDone=true;
+  var g=document.getElementById('gi');
+  g.textContent='💝';g.classList.add('opened');
+  document.getElementById('ghint').textContent="💕 that's me, I'm the gift 😌";
+  document.getElementById('gbtn').disabled=false;
+  burst();
+}
+
+function addPhoto(e,i){
+  var f=e.target.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(ev){
+    var b=document.getElementById('ph'+i);
+    b.innerHTML='<img src="'+ev.target.result+'" alt="us">';
+  };
+  r.readAsDataURL(f);
+}
+
+function makePetals(id,emoji,count){
+  var c=document.getElementById(id);if(!c)return;
+  for(var i=0;i<count;i++){
+    var d=document.createElement('div');
+    d.className='petal';
+    d.style.cssText='left:'+Math.random()*100+'%;top:-30px;font-size:'+(0.7+Math.random()*0.7)+'rem;animation-duration:'+(7+Math.random()*8)+'s;animation-delay:'+(Math.random()*6)+'s;';
+    d.textContent=emoji;
+    c.appendChild(d);
+  }
+}
+makePetals('p1','🌹',10);
+makePetals('p2','✨',10);
+makePetals('p3','🍃',10);
+makePetals('p4','💫',10);
+
+function burst(){
+  var cv=document.createElement('canvas');
+  cv.className='confetti-canvas';
+  document.body.appendChild(cv);
+  cv.width=window.innerWidth;cv.height=window.innerHeight;
+  var ctx=cv.getContext('2d');
+  var cols=['#c4a882','#e8c49a','#8b4513','#d4956a','#f0d080','#9b2335','#e8d5a3'];
+  var ps=[];
+  for(var i=0;i<80;i++) ps.push({x:Math.random()*cv.width,y:-20,w:5+Math.random()*8,h:3+Math.random()*5,r:Math.random()*6.28,dr:(Math.random()-0.5)*0.15,dy:2+Math.random()*3,dx:(Math.random()-0.5)*1.5,c:cols[Math.floor(Math.random()*cols.length)]});
+  var f=0;
+  function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    ps.forEach(function(p){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();p.y+=p.dy;p.x+=p.dx;p.r+=p.dr;});
+    f++;if(f<110)requestAnimationFrame(draw);else cv.remove();
+  }
+  draw();
+}
+</script>
+</body>
+</html>
